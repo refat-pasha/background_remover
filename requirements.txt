@@ -1,6 +1,4 @@
 Flask==2.3.3
-rembg
+rembg==2.0.67
 Pillow==11.3.0
 Werkzeug==2.3.7
-python-3.13
-
