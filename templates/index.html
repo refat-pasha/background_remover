@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Remover - AI-Powered Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-magic"></i> Background Remover</h1>
+            <p>Remove backgrounds from your images instantly with AI</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for message in messages %}
+                            <div class="alert alert-error">
+                                <i class="fas fa-exclamation-circle"></i>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <h3>Drop your image here or click to browse</h3>
+                            <p>Supports PNG, JPG, JPEG, GIF, BMP (Max 16MB)</p>
+                            <input type="file" id="fileInput" name="file" accept=".png,.jpg,.jpeg,.gif,.bmp" required>
+                            <button type="submit" class="upload-btn">
+                                <i class="fas fa-upload"></i> Upload & Remove Background
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Features Section -->
+            <div class="features-section">
+                <h2>Why Choose Our Background Remover?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI-Powered</h3>
+                        <p>Advanced machine learning algorithms for precise background detection</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Lightning Fast</h3>
+                        <p>Process images in seconds with high-quality results</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure & Private</h3>
+                        <p>Your images are processed securely and not stored permanently</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile Friendly</h3>
+                        <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Drag and drop functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('drag-over');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                updateFileName(files[0].name);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                updateFileName(e.target.files[0].name);
+            }
+        });
+
+        function updateFileName(fileName) {
+            const uploadContent = document.querySelector('.upload-content h3');
+            uploadContent.textContent = `Selected: ${fileName}`;
+        }
+    </script>
+</body>
+</html>

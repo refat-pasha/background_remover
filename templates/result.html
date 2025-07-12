@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Removed Successfully</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-magic"></i> Background Remover</h1>
+            <p>Your image has been processed successfully!</p>
+        </header>
+
+        <main class="main-content">
+            <div class="result-section">
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Background Removed Successfully!</h2>
+                    <p>Your image has been processed and is ready for download.</p>
+                </div>
+
+                <div class="download-section">
+                    <div class="download-card">
+                        <i class="fas fa-download download-icon"></i>
+                        <h3>Download Your Image</h3>
+                        <p>File: {{ filename }}</p>
+                        <a href="{{ url_for('download_file', filename=filename) }}" class="download-btn">
+                            <i class="fas fa-download"></i> Download Image
+                        </a>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                        <i class="fas fa-upload"></i> Upload Another Image
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tips Section -->
+            <div class="tips-section">
+                <h2>Tips for Best Results</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Good Lighting</h3>
+                        <p>Use images with good lighting and clear contrast between subject and background</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-eye"></i>
+                        <h3>Clear Edges</h3>
+                        <p>Images with clear, defined edges around the subject work best</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-image"></i>
+                        <h3>High Resolution</h3>
+                        <p>Higher resolution images typically produce better results</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
