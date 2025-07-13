@@ -16,8 +16,13 @@ Powered by state-of-the-art deep learning models
 Clone the repository and install dependencies:
 
 bash
+
 git clone https://github.com/refat-pasha/background_remover.git
+
 cd background_remover
+
 pip install -r requirements.txt
+
+
 
 https://background-remover-mm1d.onrender.com/
