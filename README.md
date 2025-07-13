@@ -12,6 +12,15 @@ Simple command-line interface and Python API
 
 Powered by state-of-the-art deep learning models
 
+## Python API
+Integrate background removal into your Python projects:
+
+python
+from background_remover import remove_background
+
+result = remove_background('input.jpg')
+result.save('output.png')
+
 ## 📦 Installation
 Clone the repository and install dependencies:
 
